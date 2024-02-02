@@ -27,6 +27,11 @@ app.use('/', indexRouter);
 app.use('/api/tasks', tasksRouter);
 // app.use('/api/books', BooksRouter);
 
+//чтобы обрабатывать все запросы, кроме тех, которые начинаются с /api
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'tasks-list-ang/dist/tasks-list-ang/index.html'));
+});
+
 
 //mongoose connecting
 mongoose.

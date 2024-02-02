@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+    a(href="/api/tasks") back to lists
+
+    if task
+        form(action="/api/tasks/#{task.id}", method="post") 
+            p task title : 
+            #{task.title}
+            <input type="text" name="title" value=!{task.title}>
+            br
+            p task description: 
+            <input type="text" name="description" value=!{task.description}>
+            <input type="hidden" name="completed" value=!{task.completed}>
+            br
+            br
+            button(type="submit" value="save") Save task
+            

@@ -37,6 +37,38 @@ router.post('/', async(req, res) => {
   }
 })
 
+ // get one task
+ router.get('/show/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        // console.log(id);        
+        // const task = await Task.findById(id);
+        const task = await Task.find({});
+        res.status(200).render(`edittask`, {task: task});
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+  })
+
+ //update task
+ router.post('/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        // let task = await Task.findById(id);
+        task = await Task.findByIdAndUpdate(id, req.body);
+        
+        if(!task){
+            return res.status(404).json({message: `cannot find any task with ID ${id}`})
+        }
+        const updatedTask = await task.findById(id);
+        res.status(200).redirect('/api/tasks/' + id);
+        console.log(updatedTask);
+  
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+  })
+
 //delete task
 router.post('/del/:id', async(req, res) => {
   try{
