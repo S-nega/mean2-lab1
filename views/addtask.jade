@@ -1,17 +1,17 @@
 extends layout
 
 block content
+    div(style="width: 300px; margin: auto; margin-top: 20px; font-family:Arial")
+        p <a href="/api/tasks" style="text-decoration:none; color:#333; display: flex; justify-content: right;"> Back to list </a>
 
-    a(href="/api/tasks") back to lists
-
-    form(action="/api/tasks/", method="post") 
-        p task title : 
-        <input type="text" name="title">
-        br
-        p task description: 
-        <input type="text" name="description">
-        <input type="hidden" name="completed" value=false>
-        br
-        br
-        button(type="submit" value="save") Add task
-        
+        form(action="/api/tasks/", method="post") 
+            p Task title : 
+            <input type="text" name="title" placeholder="Your title..." style="width: 293px; height: 20px; border-radius:5px; border: 1px solid #777">
+            br
+            p Task description: 
+            <input type="text" name="description" placeholder="Your description..." style="width: 293px; height: 20px; border-radius:5px; border: 1px solid #777">
+            <input type="hidden" name="completed" value=false>
+            br
+            br
+            button(type="submit" value="save" style="background-color: steelblue; color: white; border:0; border-radius:5px; padding:5px; margin-left:10px; float: right") Add task
+            
