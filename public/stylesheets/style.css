@@ -1,9 +1,9 @@
 body {
   padding: 50px;
   font: 14px 'monospace';
-  color: red;
+  color: #333;
 }
 
 a {
-  color: #00B7FF;
+  /* color: #00B7FF; */
 }

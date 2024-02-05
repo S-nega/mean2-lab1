@@ -6,7 +6,7 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 
 
 const routes: Routes = [
-  { path: '', component: TaskListComponent },
+  { path: 'tasks-list', component: TaskListComponent },
   { path: 'add', component: AddTaskComponent },
   { path: 'edit/:id', component: EditTaskComponent }
 ];

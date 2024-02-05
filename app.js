@@ -9,8 +9,11 @@ const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var tasksRouter = require('./routes/tasks.js');
 
-var app = express();
+const bodyParser = require('body-parser');
+const { from, of } = require('rxjs');
+const { map, catchError } = require('rxjs/operators');
 
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,17 +23,17 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'tasks-list-ang/dist/tasks-list-ang')));
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'tasks-list-ang/dist/tasks-list-ang')));
+app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/api/tasks', tasksRouter);
-// app.use('/api/books', BooksRouter);
 
 //чтобы обрабатывать все запросы, кроме тех, которые начинаются с /api
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'tasks-list-ang/dist/tasks-list-ang/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'views'));
+// });
 
 
 //mongoose connecting

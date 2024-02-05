@@ -1,10 +1,28 @@
 var express = require('express');
 var router = express.Router();
 const Task = require('..//models/task.js');
+const { from, of } = require('rxjs');
+const { map, catchError } = require('rxjs/operators');
 
 
+// чтобы обрабатывать все запросы, кроме тех, которые начинаются с /api
+// router.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'views'));
+// });
 
 //get all tasks
+// router.get('/tasks', (req, res) => {
+//     from(Task.find())
+//       .pipe(
+//         map(tasks => tasks.map(task => ({ id: task._id, title: task.title, description: task.description })))
+//       )
+//       .subscribe(
+//         (tasks) => res.status(200).sendFile(path.join(__dirname, 'views', 'tasks')),
+//         (error) => res.status(500).json({ error: 'Internal Server Error' })
+//       );
+//   });
+
+// //get all tasks
 router.get('/', async(req, res) => {
   try{
       const tasks = await Task.find({});
